@@ -60,7 +60,7 @@ public class UndirectedGraph {
     //PRE: v1 and v2 are legitimate vertex names
     //(i.e. vertices with names v1 and v2 exist in the vertex list)
     //Assume the edge has not been added
-        ed
+
     }
 
     public void printGraph() {
