@@ -39,16 +39,33 @@ public class UndirectedGraph {
         //return true if a vertex is added
         //return false if a vertex with name s already exists
         //the vertex list is kept in ascending sorted order based on the name
+        if(vertices == null){
+            vertices = new VertexNode(s, null);
+            return true;
+        } else if(s.compareTo(vertices.vertexName) == 0) {
+            return false;
+        }
+        VertexNode currentNode = vertices;
+        while(currentNode.nextV != null && s.compareTo(currentNode.nextV.vertexName) > 0) {
+            currentNode = currentNode.nextV;
+        }
+        if(currentNode.nextV != null && s.compareTo(currentNode.nextV.vertexName) == 0) {
+            return false;
+        }
+        currentNode.nextV = new VertexNode(s, currentNode.nextV);
+        return true;
     }
 
     public void addEdge(String v1, String v2) {
     //PRE: v1 and v2 are legitimate vertex names
     //(i.e. vertices with names v1 and v2 exist in the vertex list)
     //Assume the edge has not been added
+        ed
     }
 
     public void printGraph() {
         //print the graph using the format shown in class
+
 
     }
 
