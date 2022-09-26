@@ -60,11 +60,50 @@ public class UndirectedGraph {
     //PRE: v1 and v2 are legitimate vertex names
     //(i.e. vertices with names v1 and v2 exist in the vertex list)
     //Assume the edge has not been added
+       VertexNode v1Node = vertices;
+       VertexNode v2Node = vertices;
+       while(v1Node.vertexName.compareTo(v1) != 0) {
+           v1Node = v1Node.nextV;
+       }
+       while(v2Node.vertexName.compareTo(v2) != 0) {
+           v2Node = v2Node.nextV;
+       }
+       EdgeNode newEdge = new EdgeNode(v1Node, v2Node);
+       if(v2Node.edges[0] == null){
+              v2Node.edges[0] = newEdge;
+       } else {
+           EdgeNode currentNode = v2Node.edges[0];
+           while(currentNode.nextE[0] != null) {
+               currentNode = currentNode.nextE[0];
+           }
+           currentNode.nextE[0] = newEdge;
+       }
+       if(v1Node.edges[1] == null){
+              v1Node.edges[1] = newEdge;
+       } else {
+           EdgeNode currentNode = v1Node.edges[1];
+           while(currentNode.nextE[1] != null) {
+               currentNode = currentNode.nextE[1];
+           }
+           currentNode.nextE[1] = newEdge;
+       }
 
     }
 
     public void printGraph() {
         //print the graph using the format shown in class
+        StringBuilder sb = new StringBuilder();
+        VertexNode currentNode = vertices;
+        while(currentNode != null){
+            sb.append(currentNode.vertexName).append(" ");
+            EdgeNode currentEdge = currentNode.edges[0];
+            while(currentEdge != null) {
+                sb.append(currentEdge.edge[1].vertexName).append(" ");
+                currentEdge = currentEdge.nextE[0];
+            }
+            currentNode = currentNode.nextV;
+        }
+        System.out.println(sb.toString());
 
 
     }
